@@ -1,6 +1,6 @@
-import { Title } from '@angular/platform-browser';
+
 import { Post } from './../app.component';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, ContentChild, ElementRef, Input, OnInit, } from '@angular/core';
 
 @Component({
   selector: 'app-post',
@@ -9,13 +9,19 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class PostComponent implements OnInit {
 
-  @Input() post: Post
+  @Input({ required: true })
+  post!: Post;
 
-  constructor() {
-    this.post = { title: '', text: '' };
-  }
+  @ContentChild('info', { static: true })
+  infoRef!: ElementRef | null;
+
+
 
   ngOnInit() {
+    console.log(111);
+
+    console.log(this.infoRef?.nativeElement);
+
   }
 
 }
