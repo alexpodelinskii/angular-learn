@@ -18,9 +18,7 @@ export class PostComponent implements OnInit {
 
 
   ngOnInit() {
-    console.log(111);
-
-    console.log(this.infoRef?.nativeElement);
+    //console.log(this.infoRef?.nativeElement);
 
   }
 
