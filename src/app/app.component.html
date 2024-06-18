@@ -1,21 +1,40 @@
-<h1>Hello Angular</h1>
+<h1>Hello Angular Pipes</h1>
+<hr>
+
+<p>Wait a second ... {{P | async}}</p>
+
+<p>Date {{date |async |date:'hh:mm:ss'}}</p>
 
 <hr>
 
-<app-post-form (onAdd)="addPost($event)"></app-post-form>
+<p>{{e | number:'3.1-4'}}</p>
+<p>{{e | number:'1.1-3'}}</p>
+<p>{{e | currency}}</p>
+<p>{{e | percent}}</p>
+<p>{{str | uppercase}}</p>
+<p>{{str | lowercase}}</p>
+<p>{{str | titlecase | slice:3:10}}</p>
 
+<pre>{{obj}}</pre>
+<pre>{{obj | json}}</pre>
+
+<p>{{e|number:'1.0-0'}}</p>
+<p>{{e|number:'1.0-0'|mult:5}}</p>
+<p>{{e|number:'1.0-0'|mult}}</p>
+<p>{{e|number:'1.0-0'|mult}}</p>
+<p>{{e |number:'1.0-0' |pow}}</p>
+<p>{{e|number:'1.0-0'|pow:4}}</p>
 <hr>
-<p appStyle='green'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas omnis illum perspiciatis, sed
-    exercitationem
-    quibusdam corporis possimus deleniti repellendus accusamus! Alias modi commodi possimus nesciunt dolorem
-    exercitationem mollitia ducimus corrupti?</p>
-<app-post *ngFor="let p of posts" [post]="p">
+<button class="btn" (click)="searchField='title'">Title</button>
+<button class="btn" (click)="searchField='text'">Text</button>
+<hr>
+<button class="btn" (click)="addPost()">Add post</button>
+<hr>
+<input type="text" [(ngModel)]='search'>
+<div *ngFor=" let post of posts|filter:search:searchField">
 
-    <div #info>
-        <small *ngIf="p.text.length>10" else short>Post is long </small>
-        <ng-template #short>
-            <small>Post is short</small>
-        </ng-template>
-    </div>
-
-</app-post>
+    <hr>
+    <p>{{post.title}}</p>
+    <p>{{post.text}}</p>
+    <hr>
+</div>
