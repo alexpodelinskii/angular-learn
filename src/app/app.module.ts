@@ -1,19 +1,17 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FormsModule } from '@angular/forms';
-import { MultByPipe } from './pipes/mult-by.pipes';
-import { PowPipe } from './pipes/pow.pipe';
-import { FilterPipe } from './pipes/filter.pipe';
+import { AppCounterService } from './services/app-counter.service';
+import { CounterComponent } from './counter/counter.component';
+
 
 @NgModule({
   declarations: [
     AppComponent,
-    MultByPipe,
-    PowPipe,
-    FilterPipe,
+    CounterComponent,
+
 
   ],
   imports: [
@@ -21,7 +19,7 @@ import { FilterPipe } from './pipes/filter.pipe';
     AppRoutingModule,
     FormsModule
   ],
-  providers: [],
+  providers: [AppCounterService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
