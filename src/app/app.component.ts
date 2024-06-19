@@ -1,7 +1,5 @@
-import { AppCounterService } from './services/app-counter.service';
-import { Component } from '@angular/core';
-import { AppCounterService1 } from './services/app-counter.service1';
-import { LocalCounterService } from './services/local-counter.service';
+import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 export interface Post {
   title: string,
@@ -12,12 +10,29 @@ export interface Post {
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
-  providers: [LocalCounterService]
+  providers: []
 })
-export class AppComponent {
-  constructor(public appCounterService: AppCounterService,
-    public appCounterService1: AppCounterService1,
-    public appCounterServiceLocal: LocalCounterService,
+export class AppComponent implements OnInit {
 
-  ) { }
+  form!: FormGroup;
+
+  ngOnInit(): void {
+    this.form = new FormGroup({
+      email: new FormControl('', [Validators.email, Validators.required]),
+      password: new FormControl(null, [Validators.required, Validators.minLength(6)]),
+      address: new FormGroup({
+        country: new FormControl('ru'),
+        city: new FormControl('Minsk', Validators.required)
+      })
+    })
+  }
+  submit() {
+    if (this.form.valid) {
+      let formData = { ...this.form.value };
+      console.log(this.form);
+
+    }
+
+
+  }
 }
